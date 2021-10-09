@@ -24,3 +24,41 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+let a = {
+  name: "asd",
+  address: {
+      city: 'Minsk'
+  }
+}
+
+a = {
+  name: 'sd',
+  address: {
+    city: 'Svisloch'
+  }
+}
+
+let b: number;
+b = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
