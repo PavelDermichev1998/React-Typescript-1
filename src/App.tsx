@@ -10,21 +10,25 @@ function App() {
     // return JSX {
     return (
         <div>
-            <PageTitle title = {"This is App"}/>
-            <PageTitle title = {"My friends"}/>
-            <Rating value = {3}/>
-            <Accordion title = {"Title"}/>
-            <Accordion title = {"Menu"}/>
-            <Rating value = {4}/>
-            <Rating value = {2}/>
-            <Rating value = {1}/>
-            <Rating value = {0}/>
-            <Rating value = {5}/>
+            <PageTitle title={"This is App"}/>
+            <PageTitle title={"My friends"}/>
+            <Rating value={3}/>
+            <Accordion title={"Title"} collapsed={true}/>
+            <Accordion title={"Menu"} collapsed={false}/>
+            <Rating value={4}/>
+            <Rating value={2}/>
+            <Rating value={1}/>
+            <Rating value={0}/>
+            <Rating value={5}/>
         </div>
     );
 }
 
-function PageTitle(props: any) {
+type PageTitlePropsType = {
+    title: string
+}
+
+function PageTitle(props: PageTitlePropsType) {
     console.log("PageTitle rendering")
     return (
         <h1>
