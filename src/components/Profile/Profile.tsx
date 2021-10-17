@@ -4,7 +4,7 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 export function Profile() {
     return (
-        <div className={s.content}>
+        <div>
             <div>
                 <img src='https://www.imgacademy.com/themes/custom/imgacademy/images/helpbox-contact.jpg' alt='img'/>
             </div>
