@@ -10,8 +10,8 @@ export function MyPosts() {
                 <textarea></textarea>
                 <button>Add post</button>
             </div>
-            <Post message='Hi, how are you?'/>
-            <Post message='I`m normal'/>
+            <Post message='Hi, how are you?' likesCount = '5'/>
+            <Post message='I`m normal' likesCount = '2'/>
         </div>
 
     );
