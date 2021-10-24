@@ -1,8 +1,7 @@
-.item {
-    color: aqua;
+.postsBlock {
+    padding: 10px;
 }
 
-.item img {
-    width: 50px;
-    border-radius: 50%;
+.posts {
+margin-top: 10px;
 }

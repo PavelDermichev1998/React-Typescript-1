@@ -4,14 +4,20 @@ import {Post} from "./Post/Post";
 
 export function MyPosts() {
     return (
-        <div>
-            my post
+        <div className={s.postsBlock}>
+            <h3>My post</h3>
             <div>
-                <textarea></textarea>
-                <button>Add post</button>
+                <div>
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
             </div>
-            <Post message='Hi, how are you?' likesCount = '5'/>
-            <Post message='I`m normal' likesCount = '2'/>
+            <div className={s.posts}>
+                <Post message='Hi, how are you?' likesCount='5'/>
+                <Post message='I`m normal' likesCount='2'/>
+            </div>
         </div>
 
     );
