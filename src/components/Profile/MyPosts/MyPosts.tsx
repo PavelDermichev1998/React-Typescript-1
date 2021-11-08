@@ -7,6 +7,7 @@ import {postsDataType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts: Array<postsDataType>
+    addPost: any
 }
 
 export function MyPosts(props: MyPostsPropsType) {
@@ -17,7 +18,7 @@ export function MyPosts(props: MyPostsPropsType) {
     let newPostElement: any = React.createRef();
     let addPost = () => {
         let text = newPostElement.current.value;
-        alert(text)
+        props.addPost(text)
     }
 
     return (

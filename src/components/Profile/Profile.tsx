@@ -8,13 +8,14 @@ import {postsDataType} from "../../redux/state";
 
 type ProfilePropsType = {
     state: {posts: Array<postsDataType>}
+    addPost: any
 }
 
 export function Profile(props: ProfilePropsType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts = {props.state.posts}/>
+            <MyPosts posts = {props.state.posts} addPost={props.addPost}/>
         </div>
     );
 }
