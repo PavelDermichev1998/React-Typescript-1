@@ -2,20 +2,23 @@ import React from 'react';
 import { DialogItem } from './DialogItem/DialogItem';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
-import {dialogsDataType, messagesDataType} from "../../index";
+import {dialogsDataType, messagesDataType} from "../../redux/state";
+
 
 
 
 type DialogsPropsType = {
-    dialogs: Array<dialogsDataType>
-    messages: Array<messagesDataType>
+    state: {
+        messages: Array<messagesDataType>
+        dialogs: Array<dialogsDataType>
+    }
 }
 
 export function Dialogs(props:DialogsPropsType) {
 
-    let dialogsElements = props.dialogs
+    let dialogsElements = props.state.dialogs
         .map(d => <DialogItem name={d.name} id={d.id}/>);
-    let messagesElements = props.messages
+    let messagesElements = props.state.messages
         .map(m => <Message message={m.message} id={m.id}/>)
 
 
