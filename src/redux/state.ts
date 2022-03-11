@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 export type postsDataType = {
     id: number
     message: string
@@ -22,7 +24,11 @@ export type stateType = {
         messages: Array<messagesDataType>
         dialogs: Array<dialogsDataType>
     }
+    sidebar: {}
 }
+
+
+
 export let state: stateType = {
     profilePage: {
         posts: [
@@ -45,10 +51,11 @@ export let state: stateType = {
             {id: 4, name: 'Andrey'},
             {id: 5, name: 'Luba'},
         ],
-    }
+    },
+    sidebar: {}
 }
 
-export let addPost = () => {
+export let addPost = (postMessage: any) => {
     let newPost: any = {
         id: 5,
         message: postMessage,
@@ -56,5 +63,6 @@ export let addPost = () => {
     };
 
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state)
 }
 

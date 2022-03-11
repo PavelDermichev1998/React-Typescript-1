@@ -14,7 +14,7 @@ import {stateType} from "./redux/state";
 
 type AppPropsType = {
     state: stateType
-    addPost: () => void
+    addPost: (postMessage: any) => void
 }
 
 function App(props: AppPropsType) {
