@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {addPost} from "./redux/state";
+import {addPost, updateNewPostText} from "./redux/state";
 import {BrowserRouter} from "react-router-dom";
 
 
@@ -13,6 +13,8 @@ export let rerenderEntireTree = (state: any) =>{
                 <App
                     state={state}
                     addPost={addPost}
+                    newPostText={state.profilePage.newPostText}
+                    updateNewPostText={updateNewPostText}
                 />
             </BrowserRouter>
         </React.StrictMode>,

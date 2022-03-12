@@ -6,20 +6,25 @@ import {postsDataType} from "../../../redux/state";
 
 
 type MyPostsPropsType = {
-    posts: Array<postsDataType>
-    addPost: (postMessage: any) => void
+    profilePage: Array<postsDataType>
+    addPost: () => void
+    newPostText: string
+    updateNewPostText: any
 }
 
 export function MyPosts(props: MyPostsPropsType) {
 
-    let postsElements = props.posts
+    let postsElements = props.profilePage
         .map(p => <Post message={p.message} likesCount={p.likesCount}/>)
 
     let newPostElement: any = React.createRef();
     let addPost = () => {
+        props.addPost();
+    }
+
+    let onPostChange = () => {
         let text = newPostElement.current.value;
-        props.addPost(text)
-        newPostElement.current.value = '';
+        props.updateNewPostText(text);
     }
 
     return (
@@ -27,7 +32,11 @@ export function MyPosts(props: MyPostsPropsType) {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}/>
+                    <textarea
+                        ref={newPostElement}
+                        value={props.newPostText}
+                        onChange={onPostChange}
+                    />
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
