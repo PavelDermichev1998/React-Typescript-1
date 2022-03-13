@@ -15,16 +15,18 @@ type MyPostsPropsType = {
 export function MyPosts(props: MyPostsPropsType) {
 
     let postsElements = props.profilePage
-        .map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+        .map(p => <Post key = {p.id} message={p.message} likesCount={p.likesCount}/>)
 
-    let newPostElement: any = React.createRef();
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
     let addPost = () => {
         props.addPost();
     }
 
     let onPostChange = () => {
-        let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+            let text = newPostElement.current?.value;
+            props.updateNewPostText(text);
+
+
     }
 
     return (
