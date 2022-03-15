@@ -15,9 +15,10 @@ export function Profile(props: ProfilePropsType) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts profilePage={props.profilePage.posts}
-                     dispatch={props.dispatch}
-                     newPostText={props.newPostText}
+            <MyPosts
+                profilePage={props.profilePage.posts}
+                dispatch={props.dispatch}
+                newPostText={props.newPostText}
             />
         </div>
     );

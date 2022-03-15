@@ -16,6 +16,7 @@ export let rerenderEntireTree = (state: any) => {
                     state={state}
                     dispatch={store.dispatch.bind(store)}
                     newPostText={state.profilePage.newPostText}
+                    store={store}
                 />
             </BrowserRouter>
         </React.StrictMode>,
