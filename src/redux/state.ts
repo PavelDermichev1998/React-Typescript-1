@@ -1,36 +1,43 @@
-export type postsDataType = {
+export type PostsDataType = {
     id: number
     message: string
     likesCount: number
 }
-export type dialogsDataType = {
+export type DialogsDataType = {
     id: number
     name: string
 }
-export type messagesDataType = {
+export type MessagesDataType = {
     id: number
     message: string
 }
-export type stateType = {
+export type StateType = {
     profilePage: {
-        posts: Array<postsDataType>
+        posts: Array<PostsDataType>
         newPostText: string
 
     }
     dialogsPage: {
-        dialogs: Array<dialogsDataType>
-        messages: Array<messagesDataType>
+        dialogs: Array<DialogsDataType>
+        messages: Array<MessagesDataType>
         newMessageBody: string
     }
     sidebar: {}
 }
-export type storeType = {
-    _state: stateType
-    _callSubscriber: (a: stateType) => void
-    getState: () => stateType
+
+export type StoreType = {
+    _state: StateType
+    _callSubscriber: (state: StateType) => void
+    getState: () => StateType
     subscribe: (observer: any) => void
-    dispatch: (action: any) => void
+    dispatch: (action: ActionsType) => void
 }
+
+type ActionsType = ReturnType<typeof addPostActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
+    | ReturnType<typeof sendMessageActionCreator>
+    | ReturnType<typeof updateNewMessageBodyActionCreator>
+
 
 
 const ADD_POST = 'ADD-POST';
@@ -39,7 +46,7 @@ const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 
-export let store: storeType = {
+export let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
@@ -70,17 +77,15 @@ export let store: storeType = {
     _callSubscriber() {
         console.log('state changed')
     },
-
     getState() {
         return this._state
     },
-    subscribe(observer: any) {
+    subscribe(observer: () => void) {
         this._callSubscriber = observer
     },
-
     dispatch(action) {
         if (action.type === ADD_POST) {
-            let newPost: postsDataType = {
+            let newPost: PostsDataType = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
                 likesCount: 0
@@ -103,10 +108,10 @@ export let store: storeType = {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST});
+export const addPostActionCreator = () => ({type: ADD_POST} as const);
 export const updateNewPostTextActionCreator = (text: string) =>
-    ({type: UPDATE_NEW_POST_TEXT, postMessage: text});
+    ({type: UPDATE_NEW_POST_TEXT, postMessage: text}as const);
 
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE}as const);
 export const updateNewMessageBodyActionCreator = (newBody: string) =>
-    ({type: UPDATE_NEW_MESSAGE_BODY, newBody: newBody});
+    ({type: UPDATE_NEW_MESSAGE_BODY, newBody: newBody}as const);

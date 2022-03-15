@@ -4,11 +4,11 @@ import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {
     sendMessageActionCreator,
-    updateNewMessageBodyActionCreator, storeType
+    updateNewMessageBodyActionCreator, StoreType
 } from "../../redux/state";
 
 type DialogsPropsType = {
-    store: storeType
+    store: StoreType
 }
 
 export function Dialogs(props: DialogsPropsType) {
