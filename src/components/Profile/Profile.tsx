@@ -7,9 +7,8 @@ import {postsDataType} from "../../redux/state";
 
 type ProfilePropsType = {
     profilePage: { posts: Array<postsDataType> }
-    addPost: () => void
+    dispatch: (action?: any) => void
     newPostText: string
-    updateNewPostText: any
 }
 
 export function Profile(props: ProfilePropsType) {
@@ -17,9 +16,8 @@ export function Profile(props: ProfilePropsType) {
         <div>
             <ProfileInfo/>
             <MyPosts profilePage={props.profilePage.posts}
-                     addPost={props.addPost}
+                     dispatch={props.dispatch}
                      newPostText={props.newPostText}
-                     updateNewPostText={props.updateNewPostText}
             />
         </div>
     );

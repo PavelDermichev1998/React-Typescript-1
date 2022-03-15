@@ -7,26 +7,27 @@ import {postsDataType} from "../../../redux/state";
 
 type MyPostsPropsType = {
     profilePage: Array<postsDataType>
-    addPost: () => void
+    dispatch: (action?: any) => void
     newPostText: string
-    updateNewPostText: any
 }
 
 export function MyPosts(props: MyPostsPropsType) {
 
     let postsElements = props.profilePage
         .map(p => <Post key = {p.id} message={p.message} likesCount={p.likesCount}/>)
-
     let newPostElement = React.createRef<HTMLTextAreaElement>();
-    let addPost = () => {
-        props.addPost();
-    }
 
+
+    let addPost = () => {
+        props.dispatch({type: 'ADD-POST'});
+    }
     let onPostChange = () => {
             let text = newPostElement.current?.value;
-            props.updateNewPostText(text);
-
-
+            let action = {
+                type: 'UPDATE-NEW-POST-Text',
+                postMessage: text
+            }
+            props.dispatch(action);
     }
 
     return (

@@ -1,8 +1,3 @@
-
-let rerenderEntireTree = (state: any) =>{
-    console.log('state changed')
-}
-
 export type postsDataType = {
     id: number
     message: string
@@ -29,51 +24,66 @@ export type stateType = {
     sidebar: {}
 }
 
+export type storeType = {
+    _state: stateType
+    _callSubscriber: (a: stateType) => void
+    getState: () => stateType
+    subscribe: (observer: any) => void
+    dispatch: (action: any) => void
+}
 
-export let state: stateType = {
-    profilePage: {
-        posts: [
-            {id: 1, message: 'Hi, how are you?', likesCount: 22},
-            {id: 2, message: 'I`m normal', likesCount: 13},
-        ],
-        newPostText: 'asd'
+export let store: storeType = {
+    _state: {
+        profilePage: {
+            posts: [
+                {id: 1, message: 'Hi, how are you?', likesCount: 22},
+                {id: 2, message: 'I`m normal', likesCount: 13},
+            ],
+            newPostText: 'asd'
+        },
+        dialogsPage: {
+            messages: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How are you?'},
+                {id: 3, message: 'Not bed'},
+                {id: 4, message: 'Oh'},
+                {id: 5, message: 'Yo'},
+            ],
+            dialogs: [
+                {id: 1, name: 'Dima'},
+                {id: 2, name: 'Victor'},
+                {id: 3, name: 'Pasha'},
+                {id: 4, name: 'Andrey'},
+                {id: 5, name: 'Luba'},
+            ],
+        },
+        sidebar: {}
     },
-    dialogsPage: {
-        messages: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Not bed'},
-            {id: 4, message: 'Oh'},
-            {id: 5, message: 'Yo'},
-        ],
-        dialogs: [
-            {id: 1, name: 'Dima'},
-            {id: 2, name: 'Victor'},
-            {id: 3, name: 'Pasha'},
-            {id: 4, name: 'Andrey'},
-            {id: 5, name: 'Luba'},
-        ],
+    _callSubscriber() {
+        console.log('state changed')
     },
-    sidebar: {}
-}
 
-export const addPost = () => {
-    let newPost: postsDataType = {
-        id: 5,
-        message: state.profilePage.newPostText,
-        likesCount: 0
-    };
-    state.profilePage.posts.push(newPost)
-    state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
-}
+    getState() {
+        return this._state
+    },
+    subscribe(observer: any) {
+        this._callSubscriber = observer
+    },
 
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let newPost: postsDataType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-Text') {
+            this._state.profilePage.newPostText = action.postMessage
+            this._callSubscriber(this._state)
+        }
+    }
 
-export const updateNewPostText = (postMessage: any) => {
-    state.profilePage.newPostText = postMessage
-    rerenderEntireTree(state)
-}
-
-export const subscribe = (observer: any) => {
-    rerenderEntireTree = observer
 }
