@@ -4,8 +4,9 @@ import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {
     sendMessageActionCreator,
-    updateNewMessageBodyActionCreator, StoreType
-} from "../../redux/state";
+    updateNewMessageBodyActionCreator
+} from "../../redux/dialogs-reducer";
+import {StoreType} from "../../redux/state";
 
 type DialogsPropsType = {
     store: StoreType
