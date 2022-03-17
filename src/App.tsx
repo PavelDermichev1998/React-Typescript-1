@@ -7,18 +7,12 @@ import {Route} from 'react-router-dom';
 import {News} from './components/News/News';
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
-import {StateType} from "./redux/store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
-type AppPropsType = {
-    state: StateType
-    dispatch: (action?: any) => void
-    newPostText: string
-    store: any
-}
 
-export function App (props: AppPropsType) {
+
+export function App () {
     return (
         <div className='app-wrapper'>
             <Header/>
@@ -26,14 +20,10 @@ export function App (props: AppPropsType) {
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
                        render={() =>
-                           <DialogsContainer
-                               store={props.store}
-                           />}/>
+                           <DialogsContainer/>}/>
                 <Route path='/profile'
                        render={() =>
-                           <Profile
-                               store={props.store}
-                           />}/>
+                           <Profile/>}/>
                 <Route path='/news'
                        render={News}/>
                 <Route path='/music'

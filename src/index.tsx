@@ -6,18 +6,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {App} from './App';
 import {BrowserRouter} from "react-router-dom";
+import { Provider } from './StoreContext';
+
+
 
 
 export let rerenderEntireTree = (state: any) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App
-                    state={state}
-                    dispatch={store.dispatch.bind(store)}
-                    newPostText={state.profilePage.newPostText}
-                    store={store}
-                />
+                <Provider store={store}>
+                <App/>
+                </Provider>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
