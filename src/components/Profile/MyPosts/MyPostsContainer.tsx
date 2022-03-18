@@ -3,9 +3,8 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../red
 import {MyPosts} from "./MyPosts";
 import {StoreContext} from "../../../StoreContext";
 
-
-
 export function MyPostsContainer() {
+
     return (
         <StoreContext.Consumer>
             {store => {
