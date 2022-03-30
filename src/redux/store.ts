@@ -1,4 +1,4 @@
-import {addPostActionCreator, profileReducer, updateNewPostTextActionCreator} from "./profile-reducer";
+import {addPostActionCreator, profileReducer, setUserProfile, updateNewPostTextActionCreator} from "./profile-reducer";
 import {dialogsReducer, sendMessageActionCreator, updateNewMessageBodyActionCreator} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
@@ -24,8 +24,9 @@ export type MessagesDataType = {
     message: string
 }
 export type ProfilePageType = {
-        posts: Array<PostsDataType>
-        newPostText: string
+    posts: Array<PostsDataType>
+    newPostText: string
+    profile: any
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsDataType>
@@ -48,6 +49,7 @@ export type StoreType = {
 
 export type ActionsType = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof updateNewPostTextActionCreator>
+    | ReturnType<typeof setUserProfile>
     | ReturnType<typeof sendMessageActionCreator>
     | ReturnType<typeof updateNewMessageBodyActionCreator>
     | ReturnType<typeof follow>
@@ -58,10 +60,6 @@ export type ActionsType = ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof toggleIsFetching>
 
 
-
-
-
-
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -69,7 +67,8 @@ export let store: StoreType = {
                 {id: 1, message: 'Hi, how are you?', likesCount: 22},
                 {id: 2, message: 'I`m normal', likesCount: 13},
             ],
-            newPostText: 'asd'
+            newPostText: 'asd',
+            profile: 'aa'
         },
         dialogsPage: {
             dialogs: [

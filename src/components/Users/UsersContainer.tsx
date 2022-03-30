@@ -13,7 +13,7 @@ import axios from 'axios';
 import {Users} from './Users';
 import {Preloader} from "../Common/Preloader/Preloader";
 
-type MapStatePropsType = {
+type MapUsersStatePropsType = {
     usersPage: InitialStateType
     pageSize: number
     totalUsersCount: number
@@ -28,7 +28,7 @@ type MapDispatchPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
 }
-export type UsersAPIComponentPropsType = MapStatePropsType & MapDispatchPropsType
+export type UsersAPIComponentPropsType = MapUsersStatePropsType & MapDispatchPropsType
 
 
 export class UsersAPIComponent extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
@@ -71,7 +71,7 @@ export class UsersAPIComponent extends React.Component<UsersAPIComponentPropsTyp
 }
 
 
-let mapStateToProps = (state: AppStateType): MapStatePropsType => {
+let mapStateToProps = (state: AppStateType): MapUsersStatePropsType => {
     return {
         usersPage: state.usersPage,
         pageSize: state.usersPage.pageSize,
