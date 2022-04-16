@@ -18,10 +18,10 @@ type MapProfileDispatchPropsType = {
     setUserProfile: (profile: any) => void
 }
 
-export type ProfileContainerAPIPropsType = MapProfileStatePropsType & MapProfileDispatchPropsType
+type ProfileContainerAPIPropsType = MapProfileStatePropsType & MapProfileDispatchPropsType
 type RoutePropsType = RouteComponentProps<PathParamsType> & ProfileContainerAPIPropsType;
 
-export class ProfileContainerAPI extends React.Component<RoutePropsType, RoutePropsType> {
+class ProfileContainerAPI extends React.Component<RoutePropsType, RoutePropsType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId;

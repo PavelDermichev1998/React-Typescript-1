@@ -31,7 +31,7 @@ type MapDispatchPropsType = {
 export type UsersAPIComponentPropsType = MapUsersStatePropsType & MapDispatchPropsType
 
 
-export class UsersAPIComponent extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
+class UsersAPIComponent extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
