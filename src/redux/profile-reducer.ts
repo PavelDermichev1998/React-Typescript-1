@@ -1,4 +1,5 @@
 import {ActionsType, PostsDataType, ProfilePageType} from "./store";
+import {usersAPI} from "../api/api";
 
 
 const ADD_POST = 'ADD-POST';
@@ -46,4 +47,11 @@ export const addPostActionCreator = () => ({type: ADD_POST} as const);
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: UPDATE_NEW_POST_TEXT, postMessage: text} as const);
 export const setUserProfile = (profile: any) => ({type: SET_USER_PROFILE, profile} as const);
+//thunk
+export const getUserProfile = (userId: string) => (dispatch: any) => {
+    usersAPI.getProfile(userId)
+        .then(response => {
+            dispatch(setUserProfile(response.data))
+        });
+}
 
